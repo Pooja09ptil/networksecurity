@@ -8,8 +8,8 @@ load_dotenv()
 MONGO_DB_URL=os.getenv("MONGO_DB_URL")
 print(MONGO_DB_URL)
 
-import certifi
-ca=certifi.where()
+import certifi  #--> provides set of root certificates used with py libraries to estanlish secure HTTP connections
+ca=certifi.where()  
 
 import pandas as pd
 import numpy as np
@@ -28,7 +28,7 @@ class NetworkDataExtract():
         try:
             data=pd.read_csv(file_path)
             data.reset_index(drop=True,inplace=True)
-            records=list(json.loads(data.T.to_json()).values())
+            records=list(json.loads(data.T.to_json()).values()) #-->converting the list of json
             return records
         except Exception as e:
             raise NetworkSecurityException(e,sys)
@@ -47,10 +47,11 @@ class NetworkDataExtract():
             return(len(self.records))
         except Exception as e:
             raise NetworkSecurityException(e,sys)
-        
+
+# --> Execution of ETL pipeline
 if __name__=='__main__':
     FILE_PATH="Network_Data\phisingData.csv"
-    DATABASE="KRISHAI"
+    DATABASE="NETDATA"
     Collection="NetworkData"
     networkobj=NetworkDataExtract()
     records=networkobj.csv_to_json_convertor(file_path=FILE_PATH)

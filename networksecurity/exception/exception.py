@@ -1,6 +1,8 @@
+# for error handlinding comes from system itself
 import sys
 from networksecurity.logging import logger
 
+# class to raise our custom exception
 class NetworkSecurityException(Exception):
     def __init__(self,error_message,error_details:sys):
         self.error_message = error_message
