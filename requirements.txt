@@ -1,0 +1,16 @@
+python-dotenv # -- used to call environment variables
+pandas
+numpy
+pymongo #--for data injection
+certifi
+pymongo[srv]
+scikit-learn
+mlflow
+pyaml
+dagshub
+fastapi
+uvicorn
+python-multipart
+
+
+##-e .
