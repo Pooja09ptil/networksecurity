@@ -5,24 +5,23 @@ distributing Python projects. It is used by setuptools
 of your project, such as its metadata, dependencies, and more
 '''
 
-from setuptools import find_packages,setup
+from setuptools import find_packages,setup   # --consider all __init package as a whole package
 from typing import List
 
 def get_requirements()->List[str]:
     """
     Thiss function will return list of requirements
-    
     """
     requirement_lst:List[str]=[]
     try:
         with open('requirements.txt','r') as file:
             #Read lines from the file
             lines=file.readlines()
-            ## Process each line
+            # Process each line
             for line in lines:
-                requirement=line.strip()
-                ## ignore empty lines and -e .
-                if requirement and requirement!= '-e .':
+                requirement=line.strip()  #--> to remove empty spaces
+                # ignore empty lines and -e .
+                if requirement and requirement!= '-e .':  #--> 
                     requirement_lst.append(requirement)
     except FileNotFoundError:
         print("requirements.txt file not found")
